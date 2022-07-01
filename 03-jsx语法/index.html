@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="test" </div>
+</body>
+
+<script type="text/babel">
+
+    // class名称使用className 
+    // 变量用单括号引用{}
+    // style样式使用双括号{{}}
+    // 虚拟dom只有一个根标签
+    // 标签必须闭合
+
+    const tag = 'tag'
+    const age = 'Age'
+    const VDOM = (
+        <div>
+            <h2 className='box' id={tag}>
+                <span style={{ color: "white" }}>{age}</span>
+            </h2>
+            <input type="text" />
+        </div>
+    )
+
+    //渲染虚拟dom
+    ReactDOM.render(VDOM, document.getElementById('test'))
+
+</script>
+
+</html>

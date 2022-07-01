@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+</body>
+<script type="text/babel">
+    //创建类式组件
+    //this的指向Mypeople
+    class MyPeople extends React.Component {
+        render() {
+            return <h2>hello!</h2>
+        }
+    }
+    ReactDOM.render(<MyPeople />, document.getElementById("test"))
+</script>
+
+<script type="text/javascript">
+    class people {
+        constructor(name, age) {
+            this.name = name
+            this.age = age
+        }
+
+        speak() {
+            console.log(`我叫${this.name},我年龄${this.age}`);
+        }
+    }
+
+    //继承people类
+    class student extends people {
+        constructor(name, age, grend) {
+            super(name, age)
+            this.grend = grend
+            this.school = "bj"
+        }
+        speak() {
+            console.log(`我叫${this.name},我年龄${this.age},我读${this.grend}`);
+        }
+        study() {
+            console.log("我很努力的学习");
+        }
+    }
+
+    const p1 = new people("tom", 18)
+    const p2 = new people("jim", 19)
+    p1.speak()
+    p2.speak()
+    //修改this指向，undefined
+    // p1.speak.call("zhangsan", 55)
+
+    const s1 = new student("zhang", 20, "yiniaji")
+    console.log(s1);
+    s1.speak()
+</script>
+
+</html>

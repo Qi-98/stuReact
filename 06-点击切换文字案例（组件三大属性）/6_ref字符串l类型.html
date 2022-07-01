@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdn.staticfile.org/prop-types/15.6.1/prop-types.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+</body>
+<script type="text/babel">
+    class Dome extends React.Component {
+        showData = () => {
+            const { input1 } = this.refs
+            alert(input1.value)
+        }
+
+        showData2 = () => {
+            const { innput2 } = this.refs
+            alert(innput2.value)
+        }
+        render() {
+            return (
+                <div>
+                    <input ref="input1" type="text" placeholder="111" />
+                    <button onClick={this.showData}>点击</button>
+                    <input ref="input2" onBlur={this.showData2} type="text" placeholder="222" />
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Dome />, document.getElementById("test"))
+</script>
+
+</html>

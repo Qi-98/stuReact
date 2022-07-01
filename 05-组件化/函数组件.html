@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+</body>
+
+<script type="text/babel">
+    //创建函数式组件:
+    //1.定义组件，首字母大写，函数必须有返回值
+    //this指向undefined
+
+    function Demo() {
+        return <h2>定义的组件</h2>
+    }
+
+    ReactDOM.render(<Demo />, document.getElementById('test'))
+</script>
+
+</html>
