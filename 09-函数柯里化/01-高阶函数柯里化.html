@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdn.staticfile.org/prop-types/15.6.1/prop-types.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <script type="text/babel">
+        class Login extends React.Component {
+
+            static = { usernam: "", password: "" }
+
+            saveFromData = (dataType) => {//dataType获取使用saveFromData的username和password
+                console.log(dataType)
+                return (event) => {//返回输入框内的字符
+                    console.log(dataType, event.target.value)
+                    this.setState({ [dataType]: event.target.value })//将input框内的值进行记录
+                }
+            }
+
+            showData = (event) => {
+                const { username, password } = this
+                event.preventDefault();//使页面提交信息后不刷新页面
+            }
+            render() {
+                return (
+                    <div>
+                        <form action="http://www.atguigu.com" onSubmit={this.showData}>
+                            用户名：<input type="text" onChange={this.saveFromData('username')} name="username" />
+                            密码：<input type="password" onChange={this.saveFromData('password')} name="password" />
+                            <button>登录</button>
+                        </form>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Login />, document.getElementById("test"))
+    </script>
+</body>
+<script type="text/javascript">
+    function fn(a, b, c) {
+        return a + b + c
+    }
+    fn(1, 2, 3)
+</script>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdn.staticfile.org/prop-types/15.6.1/prop-types.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <script type="text/babel">
+        class Login extends React.Component {
+
+            //初始化默认值
+            static = { usernam: "", password: "" }
+
+            //保存用户名实时更新
+            updataname = (event) => {
+                this.setState({ username: event.target.value })
+            }
+            //保存密码实时更新
+            updataword = (event) => {
+                this.setState({ password: event.target.value })
+            }
+
+            // 表单回调
+            showData = (event) => {
+                const { username, password } = this
+                event.preventDefault();//使页面提交信息后不刷新页面
+            }
+            render() {
+                return (
+                    <div>
+                        <form action="http://www.atguigu.com" onSubmit={this.showData}>
+                            用户名：<input ref={a => this.username = a} onChange={this.updataname} type="text" name="username" />
+                            密码：<input ref={a => this.password = a} type="password" onChange={this.updataword} name="password" />
+                            <button>登录</button>
+                        </form>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Login />, document.getElementById("test"))
+    </script>
+</body>
+
+</html>
