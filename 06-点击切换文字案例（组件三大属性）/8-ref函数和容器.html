@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdn.staticfile.org/prop-types/15.6.1/prop-types.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        class Dome extends React.Component {
+            /*
+                尽量避免字符串的ref
+            */
+
+            //React.createRef是一个容器，容器可以存储ref节点，只能专人专用，再次引用后会覆盖上一次。
+            myRef = React.createRef()
+
+            showData1 = () => {
+                console.log(this.myRef.current.value)
+            }
+            showData2 = () => {
+                console.log(this)//新增input1
+                console.log(this.input1.value)
+            }
+
+            render() {
+                return (
+                    <div>
+                        <input type="text" ref={this.myRef} placeholder="输入显示数据" />
+                        <button type="button" onClick={this.showData1}>点击</button>
+                        <input ref={a => { this.input1 = a }} onBlur={this.showData2} type="text" placeholder="失去焦点数据显示" />
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Dome />, document.getElementById("test"))
+    </script>
+</body>
+
+</html>
