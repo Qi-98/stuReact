@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdn.staticfile.org/prop-types/15.6.1/prop-types.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        /*
+            通过onXxx属性指定事件处理函数 （注意大小写）
+                1.React使用的是自定义事件，而不是使用的原生DOM事件
+                2.React中的事件是通过事件委托方式处理的（委托给组件最外层的元素）
+            通过event.target得到发生事件的DOM元素对象
+        */
+        class Dome extends React.Component {
+
+            showData1 = () => {
+                console.log(this.input1.value)
+            }
+            showData2 = (event) => {
+                console.log(event.target.value)
+            }
+            render() {
+                return (
+                    <div>
+                        <input ref={a => this.input1 = a} type="text" placeholder="输入内容" />
+                        <button type="button" onClick={this.showData1}>点击</button>
+
+                        <input type="text" onBlur={this.showData2} placeholder="输入失去焦点" />
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Dome />, document.getElementById("test"))
+    </script>
+</body>
+
+</html>
