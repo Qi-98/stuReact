@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdn.staticfile.org/prop-types/15.6.1/prop-types.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        /*
+            组件的生命周期(旧)
+                setState()有开关的更新
+                forceUpdate()强制更新
+
+        */
+
+        class Life extends React.Component {
+
+            //构造器
+            constructor(props) {
+                console.log("构造器");
+                super(props)
+            }
+
+            //初始化状态
+            state = { qiuhe: 0 }
+
+            //添加数值方法
+            add = () => {
+                let { qiuhe } = this.state
+                this.setState({ qiuhe: qiuhe += 1 })
+            }
+            //卸载组件
+            unmount = () => {
+                ReactDOM.unmountComponentAtNode(document.getElementById("test"))
+                console.log("卸载组件");
+            }
+
+            //组件将要挂载的钩子 
+            componentWillMount() {
+                console.log("组件初始挂载")
+            }
+            //组件挂载完毕的钩子
+            componentDidMount() {
+                console.log("挂载完毕");
+            }
+            //控制组件更新的开关
+            shouldComponentUpdate() {
+                console.log("控制setState的钩子");
+                return true  //必须要写
+            }
+            //组件将要更新的钩子
+            componentWillUpdate() {
+                console.log("组件更新的钩子");
+            }
+
+
+            render() {
+                console.log("render")
+                return (
+                    <div>
+                        <h2>当前求和为:{this.state.qiuhe}</h2>
+                        <button onClick={this.add}>点我+1</button>
+                        <button onClick={this.unmount}>卸载组件</button>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Life />, document.getElementById("test"))
+    </script>
+</body>
+
+</html>
